@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coach — First Principles Thinking, On Demand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 24px;
+  }
+
+  .hero-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10,10,10,0.5) 0%,
+      rgba(10,10,10,0.7) 50%,
+      rgba(10,10,10,1) 100%
+    );
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(224,122,95,0.1) 0%, transparent 70%);
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: glow-drift 8s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes glow-drift {
+    0% { transform: translateX(-50%) translateY(0) scale(1); }
+    100% { transform: translateX(-40%) translateY(-30px) scale(1.2); }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  .hero-text {
+    max-width: 560px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border: 1px solid rgba(224,122,95,0.3);
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #E07A5F;
+    margin-bottom: 32px;
+    backdrop-filter: blur(8px);
+    background: rgba(224,122,95,0.06);
+  }
+
+  .hero-badge .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #E07A5F;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(224,122,95,0.4); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(224,122,95,0); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    background: linear-gradient(135deg, #E07A5F, #d4a574);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 460px;
+  }
+
+  /* ─── HERO FORM CARD ─── */
+  .hero-form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 40px 32px;
+    backdrop-filter: blur(20px);
+  }
+
+  .hero-form-card .invite-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .hero-form-card .invite-tag .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E07A5F;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .hero-form-card .invite-tag span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #E07A5F;
+  }
+
+  .hero-form-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .hero-form-card .card-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .hero-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: -6px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 15px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition: all 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  input::placeholder { color: rgba(255,255,255,0.2); }
+
+  input:focus, select:focus {
+    border-color: rgba(224,122,95,0.5);
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 0 0 3px rgba(224,122,95,0.08);
+  }
+
+  .phone-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 10px;
+  }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.4)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+
+  select option { background: #1a1a1a; color: #f5f5f5; }
+
+  .submit-btn {
+    margin-top: 6px;
+    padding: 16px;
+    background: linear-gradient(135deg, #E07A5F, #c46a50);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(224,122,95,0.25);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(224,122,95,0.35);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .form-fine-print {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ─── SUCCESS STATE ─── */
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+    animation: fade-in 0.5s ease;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .success-message .check-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(224,122,95,0.1);
+    border: 2px solid #E07A5F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .success-message .check-circle svg { width: 28px; height: 28px; color: #E07A5F; }
+
+  .success-message h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .success-message p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .success-message .phone-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(224,122,95,0.08);
+    border: 1px solid rgba(224,122,95,0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    color: #E07A5F;
+    font-weight: 500;
+    animation: ring 1.5s ease-in-out infinite;
+  }
+
+  @keyframes ring {
+    0%, 100% { transform: rotate(0); }
+    10% { transform: rotate(-3deg); }
+    20% { transform: rotate(3deg); }
+    30% { transform: rotate(-2deg); }
+    40% { transform: rotate(0); }
+  }
+
+  /* ─── VIDEO STRIP GALLERY ─── */
+  .video-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    height: 45vh;
+    min-height: 300px;
+    position: relative;
+  }
+
+  .video-gallery-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-gallery-item video,
+  .video-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
+
+  .video-gallery-item:hover video,
+  .video-gallery-item:hover img {
+    opacity: 0.7;
+  }
+
+  .video-gallery-item .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 100%);
+  }
+
+  .video-gallery-item .gallery-label {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    z-index: 2;
+  }
+
+  .gallery-label .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(224,122,95,0.15);
+    border: 1px solid rgba(224,122,95,0.25);
+    border-radius: 6px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #E07A5F;
+    margin-bottom: 8px;
+  }
+
+  .gallery-label h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .gallery-label p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+  }
+
+  /* ─── QUOTE BREAK ─── */
+  .visual-break {
+    position: relative;
+    height: 50vh;
+    min-height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .visual-break video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+  }
+
+  .visual-break-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,1) 0%,
+      rgba(10,10,10,0.3) 30%,
+      rgba(10,10,10,0.3) 70%,
+      rgba(10,10,10,1) 100%
+    );
+  }
+
+  .visual-break-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 650px;
+    padding: 0 24px;
+  }
+
+  .visual-break-text blockquote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-style: italic;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .visual-break-text cite {
+    display: block;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-it-works {
+    padding: 120px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #E07A5F;
+    margin-bottom: 20px;
+  }
+
+  .how-it-works h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .how-it-works > p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 64px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .step {
+    position: relative;
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    transition: all 0.3s;
+  }
+
+  .step:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(224,122,95,0.15);
+    transform: translateY(-4px);
+  }
+
+  .step-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(224,122,95,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .step-number {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px;
+    color: rgba(224,122,95,0.3);
+  }
+
+  .step h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    padding: 60px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #E07A5F, #d4a574);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .stat p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── BOTTOM FORM ─── */
+  .form-section {
+    padding: 120px 24px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .form-section .invite-badge-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: rgba(224,122,95,0.06);
+    border: 1px solid rgba(224,122,95,0.15);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-section .invite-badge-form .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E07A5F;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .form-section .invite-badge-form span {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #E07A5F;
+  }
+
+  .form-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .form-section .subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-section .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    position: relative;
+    padding: 100px 24px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .footer-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(224,122,95,0.04) 0%,
+      transparent 100%
+    );
+  }
+
+  .footer-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .footer-icon {
+    font-size: 40px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  .footer h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .footer h3 span {
+    background: linear-gradient(135deg, #E07A5F, #d4a574);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .footer p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    max-width: 550px;
+    margin: 0 auto 40px;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(224,122,95,0.3);
+    margin: 0 auto 40px;
+  }
+
+  .footer .footer-tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+
+  .footer .footer-credit {
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .footer .footer-credit a {
+    color: #E07A5F;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .footer .footer-credit a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      text-align: center;
+    }
+
+    .hero-text { max-width: 100%; }
+    .hero-desc { margin: 0 auto; }
+    .hero-badge { margin-left: auto; margin-right: auto; }
+
+    .hero-form-card {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .steps { grid-template-columns: 1fr; gap: 16px; }
+    .stats-bar { grid-template-columns: 1fr; gap: 24px; }
+    .phone-row { grid-template-columns: 100px 1fr; }
+    .how-it-works { padding: 80px 24px; }
+    .form-section { padding: 80px 24px 100px; }
+    .visual-break { height: 40vh; min-height: 280px; }
+    .video-gallery { grid-template-columns: 1fr; height: auto; }
+    .video-gallery-item { height: 250px; }
+    .hero { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO WITH FORM ─── -->
+<section class="hero">
+  <div class="hero-video-bg">
+    <!-- Rotating hero videos: rockets, EVs, factories, space -->
+    <video id="heroVideo" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80">
+      <source src="https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="pulse-dot"></div>
+        Invite Only
+      </div>
+      <h1>A coach for founders who think in <em>first principles</em></h1>
+      <p class="hero-desc">Trained on 10,000+ hours of frameworks from the world's most ambitious builders. It calls you. It remembers. It holds you accountable.</p>
+    </div>
+
+    <!-- HERO FORM -->
+    <div class="hero-form-card" id="hero-form-wrapper">
+      <div class="invite-tag">
+        <div class="dot"></div>
+        <span>27 spots remaining</span>
+      </div>
+      <h3>Get your first session</h3>
+      <p class="card-sub">Your coach calls within 60 seconds. Pick up your phone.</p>
+
+      <form id="hero-form" onsubmit="handleSubmit(event, 'hero')">
+        <label for="heroFirstName">First name</label>
+        <input type="text" id="heroFirstName" placeholder="Your first name" required>
+
+        <label>Phone number</label>
+        <div class="phone-row">
+          <select id="heroCountryCode" class="country-code-select"></select>
+          <input type="tel" id="heroPhone" placeholder="70 123 4567" required>
+        </div>
+
+        <button type="submit" class="submit-btn" id="heroSubmitBtn">Start your first session</button>
+      </form>
+
+      <div class="success-message" id="heroSuccess">
+        <div class="check-circle">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>You're in.</h3>
+        <p>Your coach is calling you now.<br>Pick up your phone.</p>
+        <div class="phone-alert">&#128222; Check your phone</div>
+      </div>
+
+      <p class="form-fine-print">Free for early members. No spam, just coaching.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VIDEO GALLERY: ROCKETS / EVs / TUNNELS ─── -->
+<section class="video-gallery">
+  <div class="video-gallery-item">
+    <!-- Rocket / Space -->
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1457364559154-aa2644600ebb?w=800&q=80">
+      <source src="https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="gallery-overlay"></div>
+    <div class="gallery-label">
+      <div class="tag">Question everything</div>
+      <h4>First principles</h4>
+      <p>Start from the ground truth</p>
+    </div>
+  </div>
+
+  <div class="video-gallery-item">
+    <!-- Electric / Future cars -->
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80">
+      <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="gallery-overlay"></div>
+    <div class="gallery-label">
+      <div class="tag">Delete before optimize</div>
+      <h4>Simplify ruthlessly</h4>
+      <p>Remove every unnecessary step</p>
+    </div>
+  </div>
+
+  <div class="video-gallery-item">
+    <!-- Tunnel / Infrastructure -->
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80">
+      <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    </video>
+    <div class="gallery-overlay"></div>
+    <div class="gallery-label">
+      <div class="tag">Think in decades</div>
+      <h4>Build what lasts</h4>
+      <p>Act in days, plan for years</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── QUOTE BREAK ─── -->
+<section class="visual-break">
+  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&q=80">
+    <source src="https://videos.pexels.com/video-files/857195/857195-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-text">
+    <blockquote>"The best founders don't have better answers.<br>They have access to better thinking."</blockquote>
+    <cite>The reason we built this.</cite>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2>Your thinking partner for the problems that keep you up at night</h2>
+  <p>No app. No login. Just a phone call with a coach that thinks the way the best builders think.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-icon">&#9742;</div>
+      <h3>The coach calls you</h3>
+      <p>Within 60 seconds. A voice call to set the foundations — understand your situation, your goals, and your biggest blockers.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-icon">&#128172;</div>
+      <h3>Summaries on WhatsApp</h3>
+      <p>After every call, you get a clear summary on WhatsApp — key takeaways, action items, and what to focus on next.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-icon">&#128170;</div>
+      <h3>Follows up &amp; keeps you accountable</h3>
+      <p>Your coach checks in on WhatsApp. Did you take action? What's blocking you? No hiding behind your own blind spots.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-icon">&#8635;</div>
+      <h3>Call and speak whenever you like</h3>
+      <p>Remembers every past conversation. Pick up where you left off — at 3AM or 3PM. Your coach is always ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<section class="stats-bar">
+  <div class="stat">
+    <h4>10,000+</h4>
+    <p>Hours of podcasts, interviews &amp; YouTube ingested</p>
+  </div>
+  <div class="stat">
+    <h4>24/7</h4>
+    <p>Available on phone &amp; WhatsApp</p>
+  </div>
+  <div class="stat">
+    <h4>60s</h4>
+    <p>To your first coaching session</p>
+  </div>
+</section>
+
+<!-- ─── BOTTOM FORM ─── -->
+<section class="form-section" id="request">
+  <div class="invite-badge-form">
+    <div class="dot"></div>
+    <span>27 spots remaining</span>
+  </div>
+
+  <h2>Request access</h2>
+  <p class="subtitle">Your coach will call you within 60 seconds.<br>Check your phone.</p>
+
+  <form id="bottom-form" onsubmit="handleSubmit(event, 'bottom')">
+    <label for="bottomFirstName">First name</label>
+    <input type="text" id="bottomFirstName" placeholder="Your first name" required>
+
+    <label>Phone number</label>
+    <div class="phone-row">
+      <select id="bottomCountryCode" class="country-code-select"></select>
+      <input type="tel" id="bottomPhone" placeholder="70 123 4567" required>
+    </div>
+
+    <button type="submit" class="submit-btn" id="bottomSubmitBtn">Start your first session</button>
+  </form>
+
+  <div class="success-message" id="bottomSuccess">
+    <div class="check-circle">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h3>You're in.</h3>
+    <p>Your coach is calling you now.<br>Pick up your phone.</p>
+    <div class="phone-alert">&#128222; Check your phone</div>
+  </div>
+
+  <p class="form-note">Free for early members. No spam, no newsletter — just a coach that calls.</p>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-icon">&#127775;</div>
+    <h3>Inspired by the man who builds <span>rockets, EVs, tunnels, neural interfaces,</span> and platforms that reach billions</h3>
+    <p>This coach is trained on the thinking frameworks, mental models, and decision-making principles of the world's most ambitious builder. The same first-principles approach used to land rockets, reinvent the automobile, and reimagine infrastructure — now available as your personal thinking partner.</p>
+    <div class="footer-divider"></div>
+    <p class="footer-tagline">Think different. Think deeper. Think first principles.</p>
+    <p class="footer-credit">Made with love in Stockholm by <a href="https://x.com/mahesh427" target="_blank" rel="noopener">Mahesh Kumar</a></p>
+  </div>
+</footer>
+
+<!-- ─── WEBHOOK + LOGIC ─── -->
+<script>
+  const WEBHOOK_URL = "https://automate.autocalls.ai/api/v1/webhooks/3m511Z2EmA2E6WJ7CdvTc";
+
+  // ─── ALL COUNTRY CODES ───
+  const countryCodes = [
+    {code:"+93",name:"AF",label:"Afghanistan +93"},{code:"+355",name:"AL",label:"Albania +355"},{code:"+213",name:"DZ",label:"Algeria +213"},
+    {code:"+376",name:"AD",label:"Andorra +376"},{code:"+244",name:"AO",label:"Angola +244"},{code:"+54",name:"AR",label:"Argentina +54"},
+    {code:"+374",name:"AM",label:"Armenia +374"},{code:"+61",name:"AU",label:"Australia +61"},{code:"+43",name:"AT",label:"Austria +43"},
+    {code:"+994",name:"AZ",label:"Azerbaijan +994"},{code:"+973",name:"BH",label:"Bahrain +973"},{code:"+880",name:"BD",label:"Bangladesh +880"},
+    {code:"+375",name:"BY",label:"Belarus +375"},{code:"+32",name:"BE",label:"Belgium +32"},{code:"+501",name:"BZ",label:"Belize +501"},
+    {code:"+229",name:"BJ",label:"Benin +229"},{code:"+975",name:"BT",label:"Bhutan +975"},{code:"+591",name:"BO",label:"Bolivia +591"},
+    {code:"+387",name:"BA",label:"Bosnia +387"},{code:"+267",name:"BW",label:"Botswana +267"},{code:"+55",name:"BR",label:"Brazil +55"},
+    {code:"+673",name:"BN",label:"Brunei +673"},{code:"+359",name:"BG",label:"Bulgaria +359"},{code:"+226",name:"BF",label:"Burkina Faso +226"},
+    {code:"+257",name:"BI",label:"Burundi +257"},{code:"+855",name:"KH",label:"Cambodia +855"},{code:"+237",name:"CM",label:"Cameroon +237"},
+    {code:"+1",name:"CA",label:"Canada +1"},{code:"+238",name:"CV",label:"Cape Verde +238"},{code:"+236",name:"CF",label:"Central African Rep. +236"},
+    {code:"+235",name:"TD",label:"Chad +235"},{code:"+56",name:"CL",label:"Chile +56"},{code:"+86",name:"CN",label:"China +86"},
+    {code:"+57",name:"CO",label:"Colombia +57"},{code:"+269",name:"KM",label:"Comoros +269"},{code:"+243",name:"CD",label:"Congo (DRC) +243"},
+    {code:"+242",name:"CG",label:"Congo (Rep.) +242"},{code:"+506",name:"CR",label:"Costa Rica +506"},{code:"+225",name:"CI",label:"Ivory Coast +225"},
+    {code:"+385",name:"HR",label:"Croatia +385"},{code:"+53",name:"CU",label:"Cuba +53"},{code:"+357",name:"CY",label:"Cyprus +357"},
+    {code:"+420",name:"CZ",label:"Czech Republic +420"},{code:"+45",name:"DK",label:"Denmark +45"},{code:"+253",name:"DJ",label:"Djibouti +253"},
+    {code:"+593",name:"EC",label:"Ecuador +593"},{code:"+20",name:"EG",label:"Egypt +20"},{code:"+503",name:"SV",label:"El Salvador +503"},
+    {code:"+240",name:"GQ",label:"Equatorial Guinea +240"},{code:"+291",name:"ER",label:"Eritrea +291"},{code:"+372",name:"EE",label:"Estonia +372"},
+    {code:"+251",name:"ET",label:"Ethiopia +251"},{code:"+679",name:"FJ",label:"Fiji +679"},{code:"+358",name:"FI",label:"Finland +358"},
+    {code:"+33",name:"FR",label:"France +33"},{code:"+241",name:"GA",label:"Gabon +241"},{code:"+220",name:"GM",label:"Gambia +220"},
+    {code:"+995",name:"GE",label:"Georgia +995"},{code:"+49",name:"DE",label:"Germany +49"},{code:"+233",name:"GH",label:"Ghana +233"},
+    {code:"+30",name:"GR",label:"Greece +30"},{code:"+502",name:"GT",label:"Guatemala +502"},{code:"+224",name:"GN",label:"Guinea +224"},
+    {code:"+592",name:"GY",label:"Guyana +592"},{code:"+509",name:"HT",label:"Haiti +509"},{code:"+504",name:"HN",label:"Honduras +504"},
+    {code:"+852",name:"HK",label:"Hong Kong +852"},{code:"+36",name:"HU",label:"Hungary +36"},{code:"+354",name:"IS",label:"Iceland +354"},
+    {code:"+91",name:"IN",label:"India +91"},{code:"+62",name:"ID",label:"Indonesia +62"},{code:"+98",name:"IR",label:"Iran +98"},
+    {code:"+964",name:"IQ",label:"Iraq +964"},{code:"+353",name:"IE",label:"Ireland +353"},{code:"+972",name:"IL",label:"Israel +972"},
+    {code:"+39",name:"IT",label:"Italy +39"},{code:"+1876",name:"JM",label:"Jamaica +1876"},{code:"+81",name:"JP",label:"Japan +81"},
+    {code:"+962",name:"JO",label:"Jordan +962"},{code:"+7",name:"KZ",label:"Kazakhstan +7"},{code:"+254",name:"KE",label:"Kenya +254"},
+    {code:"+965",name:"KW",label:"Kuwait +965"},{code:"+996",name:"KG",label:"Kyrgyzstan +996"},{code:"+856",name:"LA",label:"Laos +856"},
+    {code:"+371",name:"LV",label:"Latvia +371"},{code:"+961",name:"LB",label:"Lebanon +961"},{code:"+266",name:"LS",label:"Lesotho +266"},
+    {code:"+231",name:"LR",label:"Liberia +231"},{code:"+218",name:"LY",label:"Libya +218"},{code:"+423",name:"LI",label:"Liechtenstein +423"},
+    {code:"+370",name:"LT",label:"Lithuania +370"},{code:"+352",name:"LU",label:"Luxembourg +352"},{code:"+853",name:"MO",label:"Macau +853"},
+    {code:"+261",name:"MG",label:"Madagascar +261"},{code:"+265",name:"MW",label:"Malawi +265"},{code:"+60",name:"MY",label:"Malaysia +60"},
+    {code:"+960",name:"MV",label:"Maldives +960"},{code:"+223",name:"ML",label:"Mali +223"},{code:"+356",name:"MT",label:"Malta +356"},
+    {code:"+222",name:"MR",label:"Mauritania +222"},{code:"+230",name:"MU",label:"Mauritius +230"},{code:"+52",name:"MX",label:"Mexico +52"},
+    {code:"+373",name:"MD",label:"Moldova +373"},{code:"+377",name:"MC",label:"Monaco +377"},{code:"+976",name:"MN",label:"Mongolia +976"},
+    {code:"+382",name:"ME",label:"Montenegro +382"},{code:"+212",name:"MA",label:"Morocco +212"},{code:"+258",name:"MZ",label:"Mozambique +258"},
+    {code:"+95",name:"MM",label:"Myanmar +95"},{code:"+264",name:"NA",label:"Namibia +264"},{code:"+977",name:"NP",label:"Nepal +977"},
+    {code:"+31",name:"NL",label:"Netherlands +31"},{code:"+64",name:"NZ",label:"New Zealand +64"},{code:"+505",name:"NI",label:"Nicaragua +505"},
+    {code:"+227",name:"NE",label:"Niger +227"},{code:"+234",name:"NG",label:"Nigeria +234"},{code:"+389",name:"MK",label:"North Macedonia +389"},
+    {code:"+47",name:"NO",label:"Norway +47"},{code:"+968",name:"OM",label:"Oman +968"},{code:"+92",name:"PK",label:"Pakistan +92"},
+    {code:"+970",name:"PS",label:"Palestine +970"},{code:"+507",name:"PA",label:"Panama +507"},{code:"+675",name:"PG",label:"Papua New Guinea +675"},
+    {code:"+595",name:"PY",label:"Paraguay +595"},{code:"+51",name:"PE",label:"Peru +51"},{code:"+63",name:"PH",label:"Philippines +63"},
+    {code:"+48",name:"PL",label:"Poland +48"},{code:"+351",name:"PT",label:"Portugal +351"},{code:"+974",name:"QA",label:"Qatar +974"},
+    {code:"+40",name:"RO",label:"Romania +40"},{code:"+7",name:"RU",label:"Russia +7"},{code:"+250",name:"RW",label:"Rwanda +250"},
+    {code:"+966",name:"SA",label:"Saudi Arabia +966"},{code:"+221",name:"SN",label:"Senegal +221"},{code:"+381",name:"RS",label:"Serbia +381"},
+    {code:"+232",name:"SL",label:"Sierra Leone +232"},{code:"+65",name:"SG",label:"Singapore +65"},{code:"+421",name:"SK",label:"Slovakia +421"},
+    {code:"+386",name:"SI",label:"Slovenia +386"},{code:"+252",name:"SO",label:"Somalia +252"},{code:"+27",name:"ZA",label:"South Africa +27"},
+    {code:"+82",name:"KR",label:"South Korea +82"},{code:"+211",name:"SS",label:"South Sudan +211"},{code:"+34",name:"ES",label:"Spain +34"},
+    {code:"+94",name:"LK",label:"Sri Lanka +94"},{code:"+249",name:"SD",label:"Sudan +249"},{code:"+597",name:"SR",label:"Suriname +597"},
+    {code:"+46",name:"SE",label:"Sweden +46"},{code:"+41",name:"CH",label:"Switzerland +41"},{code:"+963",name:"SY",label:"Syria +963"},
+    {code:"+886",name:"TW",label:"Taiwan +886"},{code:"+992",name:"TJ",label:"Tajikistan +992"},{code:"+255",name:"TZ",label:"Tanzania +255"},
+    {code:"+66",name:"TH",label:"Thailand +66"},{code:"+228",name:"TG",label:"Togo +228"},{code:"+676",name:"TO",label:"Tonga +676"},
+    {code:"+216",name:"TN",label:"Tunisia +216"},{code:"+90",name:"TR",label:"Turkey +90"},{code:"+993",name:"TM",label:"Turkmenistan +993"},
+    {code:"+256",name:"UG",label:"Uganda +256"},{code:"+380",name:"UA",label:"Ukraine +380"},{code:"+971",name:"AE",label:"UAE +971"},
+    {code:"+44",name:"GB",label:"UK +44"},{code:"+1",name:"US",label:"US +1"},{code:"+598",name:"UY",label:"Uruguay +598"},
+    {code:"+998",name:"UZ",label:"Uzbekistan +998"},{code:"+58",name:"VE",label:"Venezuela +58"},{code:"+84",name:"VN",label:"Vietnam +84"},
+    {code:"+967",name:"YE",label:"Yemen +967"},{code:"+260",name:"ZM",label:"Zambia +260"},{code:"+263",name:"ZW",label:"Zimbabwe +263"}
+  ];
+
+  // Populate all country code selects
+  document.querySelectorAll('.country-code-select').forEach(select => {
+    countryCodes.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.code;
+      opt.textContent = c.label;
+      if (c.code === '+46') opt.selected = true;
+      select.appendChild(opt);
+    });
+  });
+
+  // ─── HERO VIDEO ROTATION ───
+  const heroVideos = [
+    'https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4',
+    'https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4',
+    'https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4',
+    'https://videos.pexels.com/video-files/857195/857195-hd_1920_1080_25fps.mp4'
+  ];
+  let currentVideo = 0;
+  const heroVideoEl = document.getElementById('heroVideo');
+  if (heroVideoEl) {
+    heroVideoEl.addEventListener('ended', () => {
+      currentVideo = (currentVideo + 1) % heroVideos.length;
+      heroVideoEl.src = heroVideos[currentVideo];
+      heroVideoEl.play();
+    });
+    // Remove loop so 'ended' fires
+    heroVideoEl.removeAttribute('loop');
+  }
+
+  function handleSubmit(e, formId) {
+    e.preventDefault();
+
+    const prefix = formId === 'hero' ? 'hero' : 'bottom';
+    const btn = document.getElementById(prefix + 'SubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Connecting you...';
+
+    const firstName = document.getElementById(prefix + 'FirstName').value.trim();
+    const countryCode = document.getElementById(prefix + 'CountryCode').value;
+    const phone = document.getElementById(prefix + 'Phone').value.replace(/\s/g, '');
+    const fullPhone = countryCode + phone;
+
+    // Fire webhook
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: firstName,
+        firstName: firstName,
+        phone: fullPhone,
+        phone_number: fullPhone,
+        agent: "First Principles Coach",
+        source: "coach-landing-page",
+        timestamp: new Date().toISOString()
+      })
+    }).catch(err => console.log('Webhook error:', err));
+
+    // Show success on the form that was submitted
+    const formEl = document.getElementById(prefix + '-form');
+    if (formEl) formEl.style.display = 'none';
+    document.getElementById(prefix + 'Success').style.display = 'block';
+
+    // Also hide the fine print / form note nearby
+    const card = document.getElementById(prefix === 'hero' ? 'hero-form-wrapper' : 'request');
+    const note = card ? card.querySelector('.form-fine-print, .form-note') : null;
+    if (note) note.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
