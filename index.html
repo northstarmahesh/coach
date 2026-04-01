@@ -1227,9 +1227,10 @@
   </div>
 
   <div class="video-gallery-item">
-    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80">
-      <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1617704548623-340376564e68?w=800&q=80">
+      <source src="https://videos.pexels.com/video-files/8141267/8141267-uhd_2560_1440_30fps.mp4" type="video/mp4">
     </video>
+    <img src="https://images.unsplash.com/photo-1617704548623-340376564e68?w=800&q=80" alt="Tesla Model 3 interior" style="display:none;" onload="this.style.display='none'">
     <div class="gallery-overlay"></div>
     <div class="gallery-label">
       <div class="tag">Delete before optimize</div>
@@ -1239,9 +1240,7 @@
   </div>
 
   <div class="video-gallery-item">
-    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80">
-      <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
-    </video>
+    <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=800&q=80" alt="Mars colony" style="width:100%;height:100%;object-fit:cover;">
     <div class="gallery-overlay"></div>
     <div class="gallery-label">
       <div class="tag">Think in decades</div>
@@ -1427,6 +1426,10 @@
             <span class="btn-icon">&#9742;</span>
             Call me now
           </button>
+          <button type="button" class="channel-btn wa-btn" onclick="handleSubmit('bottom', 'whatsapp')">
+            <span class="btn-icon">&#128172;</span>
+            Chat on WhatsApp
+          </button>
         </div>
       </form>
       <p class="form-fine-print">Free for early members. No spam, just coaching.</p>
@@ -1444,30 +1447,46 @@
         <div class="phone-alert">&#128222; Check your phone</div>
       </div>
     </div>
+
+    <!-- SUCCESS: WhatsApp -->
+    <div class="wizard-step" id="bottomSuccessWA">
+      <div class="success-message" style="display:block;">
+        <div class="check-circle" style="border-color:#25D366;">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:#25D366;"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>Opening WhatsApp...</h3>
+        <p>Start chatting with your coach.<br>Say hi and tell me what you're working on.</p>
+        <div class="wa-alert">&#128172; WhatsApp is opening</div>
+      </div>
+    </div>
   </div>
 
   <p class="form-note">Free for early members. No spam, no newsletter — just a coach that calls.</p>
 </section>
 
 <!-- ─── SOURCE MATERIALS ─── -->
-<section style="padding:60px 24px;background:#111;text-align:center;">
-  <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:24px;">Trained on</p>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px 40px;max-width:700px;margin:0 auto;">
-    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.6;">
-      <span style="font-size:20px;display:block;margin-bottom:4px;">&#128214;</span>
-      <em>Elon Musk</em> by Walter Isaacson
+<section style="padding:80px 24px;background:#111;text-align:center;">
+  <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:40px;">Trained on</p>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;max-width:900px;margin:0 auto;">
+    <div style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.6;max-width:140px;">
+      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692288251i/122765395.jpg" alt="Elon Musk by Walter Isaacson" style="width:120px;height:auto;border-radius:6px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+      <em>Elon Musk</em><br>Walter Isaacson
     </div>
-    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.6;">
-      <span style="font-size:20px;display:block;margin-bottom:4px;">&#128214;</span>
-      <em>The Almanack of Naval Ravikant</em> by Eric Jorgenson
+    <div style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.6;max-width:140px;">
+      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1719936756i/212592844.jpg" alt="The Book of Elon by Eric Jorgenson" style="width:120px;height:auto;border-radius:6px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+      <em>The Book of Elon</em><br>Eric Jorgenson
     </div>
-    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.6;">
-      <span style="font-size:20px;display:block;margin-bottom:4px;">&#127909;</span>
-      1,000+ hours of YouTube interviews &amp; talks
+    <div style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.6;max-width:140px;">
+      <div style="width:120px;height:170px;border-radius:6px;margin:0 auto 12px;background:linear-gradient(135deg,#c0392b,#2c3e50);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+        <span style="font-size:40px;">&#9654;</span>
+      </div>
+      <em>1,000+ hours</em><br>YouTube interviews &amp; talks
     </div>
-    <div style="color:rgba(255,255,255,0.55);font-size:14px;line-height:1.6;">
-      <span style="font-size:20px;display:block;margin-bottom:4px;">&#120143;</span>
-      Elon's X feed &amp; public posts
+    <div style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.6;max-width:140px;">
+      <div style="width:120px;height:170px;border-radius:6px;margin:0 auto 12px;background:linear-gradient(135deg,#1a1a2e,#0a0a0a);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);font-size:40px;color:#fff;">
+        &#120143;
+      </div>
+      <em>Elon's X feed</em><br>&amp; public posts
     </div>
   </div>
 </section>
@@ -1557,7 +1576,7 @@
     wrapper.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
 
     const successId = isBottom
-      ? 'bottomSuccessCall'
+      ? (type === 'call' ? 'bottomSuccessCall' : 'bottomSuccessWA')
       : (type === 'call' ? 'heroSuccessCall' : 'heroSuccessWA');
     document.getElementById(successId).classList.add('active');
 
