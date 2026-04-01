@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <!-- Bird / solo flight mark -->
+  <g transform="translate(20, 15)">
+    <!-- Stylized solo bird in flight -->
+    <path d="M45 45 C30 25, 5 20, 0 35 C5 30, 20 28, 35 40 Z" fill="#E07A5F"/>
+    <path d="M45 45 C60 25, 85 20, 90 35 C85 30, 70 28, 55 40 Z" fill="#E07A5F"/>
+    <!-- Upward streak -->
+    <path d="M42 48 L45 10 L48 48 Z" fill="#E07A5F" opacity="0.7"/>
+    <!-- Small tail -->
+    <path d="M40 50 C42 58, 48 58, 50 50 C48 54, 42 54, 40 50 Z" fill="#E07A5F" opacity="0.5"/>
+  </g>
+
+  <!-- Text -->
+  <text x="125" y="62" font-family="Inter, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#f5f5f5">
+    fly
+    <tspan fill="#E07A5F">solo</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="125" y="85" font-family="Inter, -apple-system, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.4)" letter-spacing="3">
+    FIRST PRINCIPLES COACH
+  </text>
+</svg>

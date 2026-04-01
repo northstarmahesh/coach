@@ -11,10 +11,16 @@
 
   body {
     font-family: 'Inter', -apple-system, sans-serif;
-    background: #0a0a0a;
-    color: #f5f5f5;
+    background: #FFFBF7;
+    color: #1a1a1a;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+
+  /* Dark hero section */
+  .hero {
+    background: #0a0a0a;
+    color: #f5f5f5;
   }
 
   /* ─── HERO ─── */
@@ -36,11 +42,11 @@
     overflow: hidden;
   }
 
-  .hero-video-bg video {
+  .hero-video-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.35;
+    opacity: 0.4;
   }
 
   .hero-overlay {
@@ -123,12 +129,13 @@
     line-height: 1.08;
     margin-bottom: 24px;
     letter-spacing: -1px;
+    color: #f5f5f5;
   }
 
   .hero h1 em {
     font-style: italic;
     font-weight: 400;
-    background: linear-gradient(135deg, #E07A5F, #d4a574);
+    background: linear-gradient(135deg, #E07A5F, #c46a50);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -148,6 +155,7 @@
     border-radius: 20px;
     padding: 40px 32px;
     backdrop-filter: blur(20px);
+    min-height: 380px;
   }
 
   .hero-form-card .invite-tag {
@@ -174,8 +182,10 @@
 
   .hero-form-card h3 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 24px;
-    margin-bottom: 6px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #f5f5f5;
+    line-height: 1.3;
   }
 
   .hero-form-card .card-sub {
@@ -191,21 +201,113 @@
     gap: 14px;
   }
 
+  /* ─── WIZARD STEPS ─── */
+  .wizard-step {
+    display: none;
+    animation: fade-in 0.4s ease;
+  }
+
+  .wizard-step.active {
+    display: block;
+  }
+
+  .wizard-progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .wizard-progress .prog-dot {
+    flex: 1;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    transition: background 0.3s;
+  }
+
+  .wizard-progress .prog-dot.done {
+    background: #E07A5F;
+  }
+
+  .wizard-progress .prog-dot.current {
+    background: rgba(224,122,95,0.5);
+  }
+
+  .option-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-btn {
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .option-btn:hover {
+    background: rgba(224,122,95,0.1);
+    border-color: rgba(224,122,95,0.3);
+  }
+
+  .option-btn.selected {
+    background: rgba(224,122,95,0.15);
+    border-color: #E07A5F;
+  }
+
+  .option-btn .opt-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .wizard-back {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 8px 0;
+    margin-top: 8px;
+    transition: color 0.2s;
+  }
+
+  .wizard-back:hover {
+    color: rgba(255,255,255,0.6);
+  }
+
   label {
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(26,26,26,0.4);
     margin-bottom: -6px;
+  }
+
+  .hero label {
+    color: rgba(255,255,255,0.35);
   }
 
   input, select {
     width: 100%;
     padding: 15px 16px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #f8f6f3;
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 10px;
-    color: #f5f5f5;
+    color: #1a1a1a;
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     transition: all 0.2s;
@@ -213,12 +315,23 @@
     -webkit-appearance: none;
   }
 
-  input::placeholder { color: rgba(255,255,255,0.2); }
+  .hero input, .hero select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #f5f5f5;
+  }
+
+  input::placeholder { color: rgba(26,26,26,0.3); }
+  .hero input::placeholder { color: rgba(255,255,255,0.2); }
 
   input:focus, select:focus {
     border-color: rgba(224,122,95,0.5);
-    background: rgba(255,255,255,0.07);
+    background: #fff;
     box-shadow: 0 0 0 3px rgba(224,122,95,0.08);
+  }
+
+  .hero input:focus, .hero select:focus {
+    background: rgba(255,255,255,0.07);
   }
 
   .phone-row {
@@ -229,43 +342,100 @@
 
   select {
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.4)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(26,26,26,0.4)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     padding-right: 32px;
   }
 
-  select option { background: #1a1a1a; color: #f5f5f5; }
+  select option { background: #fff; color: #1a1a1a; }
+  .hero select option { background: #1a1a1a; color: #f5f5f5; }
 
-  .submit-btn {
-    margin-top: 6px;
-    padding: 16px;
-    background: linear-gradient(135deg, #E07A5F, #c46a50);
-    color: #fff;
-    border: none;
+  /* ─── CHANNEL CHOICE ─── */
+  .channel-choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .channel-btn {
+    padding: 16px 12px;
     border-radius: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+  }
+
+  .channel-btn.call-btn {
+    background: linear-gradient(135deg, #E07A5F, #c46a50);
+    color: #fff;
     box-shadow: 0 4px 20px rgba(224,122,95,0.25);
   }
 
-  .submit-btn:hover {
+  .channel-btn.call-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(224,122,95,0.35);
   }
 
-  .submit-btn:active { transform: translateY(0); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .channel-btn.wa-btn {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.2);
+  }
+
+  .channel-btn.wa-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.3);
+  }
+
+  .channel-btn:active { transform: translateY(0); }
+  .channel-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .channel-btn .btn-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+  }
+
+  .or-divider::before,
+  .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+  }
+
+  .or-divider span {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(26,26,26,0.3);
+  }
 
   .form-fine-print {
     font-size: 11px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(26,26,26,0.3);
     text-align: center;
     margin-top: 12px;
     line-height: 1.6;
+  }
+
+  .hero .form-fine-print {
+    color: rgba(255,255,255,0.2);
   }
 
   /* ─── SUCCESS STATE ─── */
@@ -299,12 +469,21 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 24px;
     margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+
+  .hero .success-message h3 {
+    color: #f5f5f5;
   }
 
   .success-message p {
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(26,26,26,0.5);
     line-height: 1.6;
+  }
+
+  .hero .success-message p {
+    color: rgba(255,255,255,0.5);
   }
 
   .success-message .phone-alert {
@@ -320,6 +499,20 @@
     color: #E07A5F;
     font-weight: 500;
     animation: ring 1.5s ease-in-out infinite;
+  }
+
+  .success-message .wa-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(37,211,102,0.08);
+    border: 1px solid rgba(37,211,102,0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    color: #25D366;
+    font-weight: 500;
   }
 
   @keyframes ring {
@@ -350,19 +543,19 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.5;
+    opacity: 0.6;
     transition: opacity 0.4s;
   }
 
   .video-gallery-item:hover video,
   .video-gallery-item:hover img {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   .video-gallery-item .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 100%);
+    background: linear-gradient(to top, rgba(255,251,247,0.95) 0%, rgba(255,251,247,0.1) 50%, rgba(255,251,247,0.4) 100%);
   }
 
   .video-gallery-item .gallery-label {
@@ -375,7 +568,7 @@
   .gallery-label .tag {
     display: inline-block;
     padding: 4px 12px;
-    background: rgba(224,122,95,0.15);
+    background: rgba(224,122,95,0.12);
     border: 1px solid rgba(224,122,95,0.25);
     border-radius: 6px;
     font-size: 10px;
@@ -390,11 +583,12 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 1.2;
+    color: #1a1a1a;
   }
 
   .gallery-label p {
     font-size: 13px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(26,26,26,0.5);
     margin-top: 4px;
   }
 
@@ -407,6 +601,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #1a1a1a;
   }
 
   .visual-break video {
@@ -423,10 +618,10 @@
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(10,10,10,1) 0%,
-      rgba(10,10,10,0.3) 30%,
-      rgba(10,10,10,0.3) 70%,
-      rgba(10,10,10,1) 100%
+      rgba(26,26,26,1) 0%,
+      rgba(26,26,26,0.3) 30%,
+      rgba(26,26,26,0.3) 70%,
+      rgba(26,26,26,1) 100%
     );
   }
 
@@ -472,6 +667,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 60px;
+    color: #1a1a1a;
   }
 
   .flow-steps {
@@ -495,8 +691,8 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: rgba(224,122,95,0.1);
-    border: 2px solid rgba(224,122,95,0.25);
+    background: rgba(224,122,95,0.08);
+    border: 2px solid rgba(224,122,95,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -507,20 +703,21 @@
   }
 
   .flow-step.active .flow-icon {
-    background: rgba(224,122,95,0.2);
+    background: rgba(224,122,95,0.12);
     border-color: #E07A5F;
-    box-shadow: 0 0 20px rgba(224,122,95,0.2);
+    box-shadow: 0 0 20px rgba(224,122,95,0.15);
   }
 
   .flow-step h4 {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 6px;
+    color: #1a1a1a;
   }
 
   .flow-step p {
     font-size: 12px;
-    color: rgba(255,255,255,0.35);
+    color: rgba(26,26,26,0.45);
     line-height: 1.5;
   }
 
@@ -544,7 +741,7 @@
     border-radius: 100px;
     background: rgba(224,122,95,0.04);
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(26,26,26,0.5);
   }
 
   .invite-lock strong {
@@ -580,11 +777,12 @@
     line-height: 1.2;
     margin-bottom: 16px;
     max-width: 600px;
+    color: #1a1a1a;
   }
 
   .how-it-works > p {
     font-size: 16px;
-    color: rgba(255,255,255,0.45);
+    color: rgba(26,26,26,0.5);
     line-height: 1.7;
     max-width: 500px;
     margin-bottom: 64px;
@@ -599,11 +797,12 @@
   .step {
     position: relative;
     padding: 36px 28px 36px 36px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
     border-radius: 16px;
     transition: all 0.3s;
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
   }
 
   .step::before {
@@ -618,18 +817,17 @@
   }
 
   .step:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(224,122,95,0.2);
+    border-color: rgba(224,122,95,0.15);
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(224,122,95,0.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
   }
 
   .step-icon {
     width: 52px;
     height: 52px;
     border-radius: 14px;
-    background: rgba(224,122,95,0.12);
-    border: 1px solid rgba(224,122,95,0.2);
+    background: rgba(224,122,95,0.08);
+    border: 1px solid rgba(224,122,95,0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -644,7 +842,7 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 42px;
     font-weight: 700;
-    color: rgba(224,122,95,0.1);
+    color: rgba(224,122,95,0.08);
     line-height: 1;
   }
 
@@ -652,13 +850,13 @@
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #f5f5f5;
+    color: #1a1a1a;
   }
 
   .step p {
     font-size: 14px;
     line-height: 1.7;
-    color: rgba(255,255,255,0.5);
+    color: rgba(26,26,26,0.5);
   }
 
   /* ─── STATS BAR ─── */
@@ -670,15 +868,15 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
 
   .stat h4 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(32px, 5vw, 48px);
     font-weight: 700;
-    background: linear-gradient(135deg, #E07A5F, #d4a574);
+    background: linear-gradient(135deg, #E07A5F, #c46a50);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -687,8 +885,109 @@
 
   .stat p {
     font-size: 13px;
-    color: rgba(255,255,255,0.35);
+    color: rgba(26,26,26,0.45);
     letter-spacing: 0.5px;
+  }
+
+  /* ─── WHATSAPP SECTION ─── */
+  .whatsapp-section {
+    padding: 80px 24px;
+    text-align: center;
+    background: #f5f2ee;
+  }
+
+  .whatsapp-section .section-label {
+    margin-bottom: 16px;
+  }
+
+  .whatsapp-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+  }
+
+  .whatsapp-section .subtitle {
+    font-size: 16px;
+    color: rgba(26,26,26,0.5);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .wa-card {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .wa-qr {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 24px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .wa-qr img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .wa-or {
+    font-size: 12px;
+    color: rgba(26,26,26,0.3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .wa-open-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.2);
+  }
+
+  .wa-open-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.3);
+  }
+
+  .wa-open-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+  }
+
+  .wa-number {
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(26,26,26,0.35);
   }
 
   /* ─── BOTTOM FORM ─── */
@@ -735,12 +1034,13 @@
     line-height: 1.2;
     margin-bottom: 12px;
     text-align: center;
+    color: #1a1a1a;
   }
 
   .form-section .subtitle {
     text-align: center;
     font-size: 15px;
-    color: rgba(255,255,255,0.45);
+    color: rgba(26,26,26,0.5);
     margin-bottom: 40px;
     line-height: 1.7;
   }
@@ -754,7 +1054,7 @@
   .form-section .form-note {
     text-align: center;
     font-size: 12px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(26,26,26,0.3);
     margin-top: 20px;
     line-height: 1.7;
   }
@@ -765,6 +1065,8 @@
     padding: 100px 24px 60px;
     text-align: center;
     overflow: hidden;
+    background: #1a1a1a;
+    color: #f5f5f5;
   }
 
   .footer-bg {
@@ -873,6 +1175,7 @@
     .video-gallery { grid-template-columns: 1fr; height: auto; }
     .video-gallery-item { height: 250px; }
     .hero { padding: 60px 24px; }
+    .channel-choice { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -881,8 +1184,7 @@
 <!-- ─── HERO WITH FORM ─── -->
 <section class="hero">
   <div class="hero-video-bg">
-    <!-- Rocket launch hero -->
-    <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.4;">
+    <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80" alt="">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-glow"></div>
@@ -893,42 +1195,114 @@
         <div class="pulse-dot"></div>
         You've Been Invited
       </div>
-      <h1>Stop chasing. <em>Start building.</em></h1>
-      <p class="hero-desc">A personal coach trained on 10,000+ hours of Elon Musk's videos, podcasts, and interviews. It lives on your WhatsApp — keeps you accountable, cuts through noise, and kills shiny object syndrome before it kills your momentum.</p>
+      <h1>Your personal coach for <em>building what matters.</em></h1>
+      <p class="hero-desc">Trained on 10,000+ hours of Elon Musk's thinking. It lives on your phone — keeps you accountable, cuts through noise, and kills shiny object syndrome before it kills your momentum.</p>
     </div>
 
-    <!-- HERO FORM -->
+    <!-- HERO WIZARD -->
     <div class="hero-form-card" id="hero-form-wrapper">
-      <div class="invite-tag">
-        <div class="dot"></div>
-        <span><span class="spots-count">26</span> spots remaining</span>
-      </div>
-      <h3>You're invited</h3>
-      <p class="card-sub">Enter your details. Your coach calls within 60 seconds.</p>
-
-      <form id="hero-form" onsubmit="handleSubmit(event, 'hero')">
-        <label for="heroFirstName">First name</label>
-        <input type="text" id="heroFirstName" placeholder="Your first name" required>
-
-        <label>Phone number</label>
-        <div class="phone-row">
-          <select id="heroCountryCode" class="country-code-select"></select>
-          <input type="tel" id="heroPhone" placeholder="70 123 4567" required>
-        </div>
-
-        <button type="submit" class="submit-btn" id="heroSubmitBtn">Start your first session</button>
-      </form>
-
-      <div class="success-message" id="heroSuccess">
-        <div class="check-circle">
-          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <h3>You're in.</h3>
-        <p>Your coach is calling you now.<br>Pick up your phone.</p>
-        <div class="phone-alert">&#128222; Check your phone</div>
+      <div class="wizard-progress">
+        <div class="prog-dot current" id="prog1"></div>
+        <div class="prog-dot" id="prog2"></div>
+        <div class="prog-dot" id="prog3"></div>
       </div>
 
-      <p class="form-fine-print">Free for early members. No spam, just coaching.</p>
+      <!-- STEP 1: Stage -->
+      <div class="wizard-step active" id="wizStep1">
+        <h3>Where are you on your journey?</h3>
+        <div class="option-grid">
+          <button class="option-btn" onclick="selectStage(this, 'idea')">
+            <span class="opt-icon">&#128161;</span> I have an idea
+          </button>
+          <button class="option-btn" onclick="selectStage(this, 'building')">
+            <span class="opt-icon">&#128296;</span> I'm building something
+          </button>
+          <button class="option-btn" onclick="selectStage(this, 'launched')">
+            <span class="opt-icon">&#128640;</span> I've launched
+          </button>
+          <button class="option-btn" onclick="selectStage(this, 'scaling')">
+            <span class="opt-icon">&#128200;</span> I'm scaling
+          </button>
+          <button class="option-btn" onclick="selectStage(this, 'stuck')">
+            <span class="opt-icon">&#128528;</span> I'm stuck
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Challenge -->
+      <div class="wizard-step" id="wizStep2">
+        <h3>What's your biggest challenge right now?</h3>
+        <div class="option-grid">
+          <button class="option-btn" onclick="selectChallenge(this, 'finding-customers')">
+            <span class="opt-icon">&#127919;</span> Finding customers
+          </button>
+          <button class="option-btn" onclick="selectChallenge(this, 'building-product')">
+            <span class="opt-icon">&#128187;</span> Building the product
+          </button>
+          <button class="option-btn" onclick="selectChallenge(this, 'raising-money')">
+            <span class="opt-icon">&#128176;</span> Raising money
+          </button>
+          <button class="option-btn" onclick="selectChallenge(this, 'losing-motivation')">
+            <span class="opt-icon">&#128148;</span> Losing motivation
+          </button>
+          <button class="option-btn" onclick="selectChallenge(this, 'cant-decide')">
+            <span class="opt-icon">&#129300;</span> Can't decide what to do next
+          </button>
+        </div>
+        <button class="wizard-back" onclick="goToStep(1)">&larr; Back</button>
+      </div>
+
+      <!-- STEP 3: Contact + Channel -->
+      <div class="wizard-step" id="wizStep3">
+        <h3>Let's get you started.</h3>
+        <form id="hero-form" onsubmit="return false;">
+          <label for="heroFirstName">First name</label>
+          <input type="text" id="heroFirstName" placeholder="Your first name" required>
+
+          <label>Phone number</label>
+          <div class="phone-row">
+            <select id="heroCountryCode" class="country-code-select"></select>
+            <input type="tel" id="heroPhone" placeholder="70 123 4567" required>
+          </div>
+
+          <div class="channel-choice">
+            <button type="button" class="channel-btn call-btn" onclick="handleSubmit('hero', 'call')">
+              <span class="btn-icon">&#9742;</span>
+              Call me now
+            </button>
+            <button type="button" class="channel-btn wa-btn" onclick="handleSubmit('hero', 'whatsapp')">
+              <span class="btn-icon">&#128172;</span>
+              Chat on WhatsApp
+            </button>
+          </div>
+        </form>
+        <p class="form-fine-print">Free for early members. No spam, just coaching.</p>
+        <button class="wizard-back" onclick="goToStep(2)">&larr; Back</button>
+      </div>
+
+      <!-- SUCCESS: Call -->
+      <div class="wizard-step" id="heroSuccessCall">
+        <div class="success-message" style="display:block;">
+          <div class="check-circle">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>You're in.</h3>
+          <p>Your coach is calling you now.<br>Pick up your phone.</p>
+          <div class="phone-alert">&#128222; Check your phone</div>
+        </div>
+      </div>
+
+      <!-- SUCCESS: WhatsApp -->
+      <div class="wizard-step" id="heroSuccessWA">
+        <div class="success-message" style="display:block;">
+          <div class="check-circle" style="border-color:#25D366;">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:#25D366;"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>Opening WhatsApp...</h3>
+          <p>Start chatting with your coach.<br>Say hi and tell me what you're working on.</p>
+          <div class="wa-alert">&#128172; WhatsApp is opening</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -936,7 +1310,6 @@
 <!-- ─── VIDEO GALLERY: ROCKETS / EVs / TUNNELS ─── -->
 <section class="video-gallery">
   <div class="video-gallery-item">
-    <!-- Rocket / Space -->
     <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1457364559154-aa2644600ebb?w=800&q=80">
       <source src="https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4" type="video/mp4">
     </video>
@@ -949,7 +1322,6 @@
   </div>
 
   <div class="video-gallery-item">
-    <!-- Electric / Future cars -->
     <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80">
       <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
     </video>
@@ -962,7 +1334,6 @@
   </div>
 
   <div class="video-gallery-item">
-    <!-- Tunnel / Infrastructure -->
     <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80">
       <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
     </video>
@@ -1001,8 +1372,8 @@
     <div class="flow-arrow">&#8594;</div>
     <div class="flow-step active">
       <div class="flow-icon">&#9742;</div>
-      <h4>Enter your number</h4>
-      <p>Your coach calls within 60 seconds</p>
+      <h4>Pick your channel</h4>
+      <p>Get called now or start chatting on WhatsApp</p>
     </div>
     <div class="flow-arrow">&#8594;</div>
     <div class="flow-step">
@@ -1025,14 +1396,14 @@
 <section class="how-it-works">
   <div class="section-label">How it works</div>
   <h2>Your thinking partner for the problems that keep you up at night</h2>
-  <p>No app. No login. Just a phone call with a coach that thinks the way the best builders think.</p>
+  <p>No app. No login. Just a phone call or WhatsApp chat with a coach that thinks the way the best builders think.</p>
 
   <div class="steps">
     <div class="step">
       <div class="step-number">01</div>
       <div class="step-icon">&#9742;</div>
-      <h3>The coach calls you</h3>
-      <p>Within 60 seconds. A voice call to set the foundations — understand your situation, your goals, and your biggest blockers.</p>
+      <h3>Call or chat — your pick</h3>
+      <p>Get an instant phone call, or start chatting on WhatsApp. Your coach understands your situation, goals, and biggest blockers.</p>
     </div>
     <div class="step">
       <div class="step-number">02</div>
@@ -1071,17 +1442,37 @@
   </div>
 </section>
 
+<!-- ─── WHATSAPP SECTION ─── -->
+<section class="whatsapp-section">
+  <div class="section-label">Prefer to type?</div>
+  <h2>Chat with your coach on WhatsApp</h2>
+  <p class="subtitle">Scan the QR code or tap the button below. Say hi and tell your coach what you're working on.</p>
+
+  <div class="wa-card">
+    <div class="wa-qr">
+      <!-- QR code for wa.me/12602766450 -->
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F12602766450%3Ftext%3DHey%2520Coach%252C%2520I%2527d%2520like%2520to%2520start%2520my%2520first%2520session." alt="WhatsApp QR Code">
+    </div>
+    <p class="wa-or">or</p>
+    <a href="https://wa.me/12602766450?text=Hey%20Coach%2C%20I%27d%20like%20to%20start%20my%20first%20session." target="_blank" class="wa-open-btn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Open WhatsApp
+    </a>
+    <p class="wa-number">Or message +1 (260) 276-6450 directly</p>
+  </div>
+</section>
+
 <!-- ─── BOTTOM FORM ─── -->
 <section class="form-section" id="request">
   <div class="invite-badge-form">
     <div class="dot"></div>
-    <span><span class="spots-count">27</span> spots remaining</span>
+    <span><span class="spots-count">26</span> spots remaining</span>
   </div>
 
   <h2>Start your first session</h2>
-  <p class="subtitle">Your coach will call you within 60 seconds.<br>Pick up your phone.</p>
+  <p class="subtitle">Get called instantly or start chatting on WhatsApp. Your choice.</p>
 
-  <form id="bottom-form" onsubmit="handleSubmit(event, 'bottom')">
+  <form id="bottom-form" onsubmit="return false;">
     <label for="bottomFirstName">First name</label>
     <input type="text" id="bottomFirstName" placeholder="Your first name" required>
 
@@ -1091,16 +1482,34 @@
       <input type="tel" id="bottomPhone" placeholder="70 123 4567" required>
     </div>
 
-    <button type="submit" class="submit-btn" id="bottomSubmitBtn">Start your first session</button>
+    <div class="channel-choice">
+      <button type="button" class="channel-btn call-btn" onclick="handleSubmit('bottom', 'call')">
+        <span class="btn-icon">&#9742;</span>
+        Call me now
+      </button>
+      <button type="button" class="channel-btn wa-btn" onclick="handleSubmit('bottom', 'whatsapp')">
+        <span class="btn-icon">&#128172;</span>
+        Chat on WhatsApp
+      </button>
+    </div>
   </form>
 
-  <div class="success-message" id="bottomSuccess">
+  <div class="success-message" id="bottomSuccessCall">
     <div class="check-circle">
       <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
     </div>
     <h3>You're in.</h3>
     <p>Your coach is calling you now.<br>Pick up your phone.</p>
     <div class="phone-alert">&#128222; Check your phone</div>
+  </div>
+
+  <div class="success-message" id="bottomSuccessWA">
+    <div class="check-circle" style="border-color:#25D366;">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:#25D366;"><path d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h3>Opening WhatsApp...</h3>
+    <p>Start chatting with your coach.<br>Say hi and tell me what you're working on.</p>
+    <div class="wa-alert">&#128172; WhatsApp is opening</div>
   </div>
 
   <p class="form-note">Free for early members. No spam, no newsletter — just a coach that calls.</p>
@@ -1122,6 +1531,53 @@
 <!-- ─── WEBHOOK + LOGIC ─── -->
 <script>
   const WEBHOOK_URL = "https://automate.autocalls.ai/api/v1/webhooks/3m511Z2EmA2E6WJ7CdvTc";
+  const WA_NUMBER = "12602766450";
+
+  // ─── WIZARD STATE ───
+  let wizardData = { stage: '', challenge: '' };
+
+  function goToStep(step) {
+    document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('wizStep' + step).classList.add('active');
+
+    // Update progress dots
+    for (let i = 1; i <= 3; i++) {
+      const dot = document.getElementById('prog' + i);
+      dot.className = 'prog-dot';
+      if (i < step) dot.classList.add('done');
+      else if (i === step) dot.classList.add('current');
+    }
+  }
+
+  function selectStage(btn, value) {
+    wizardData.stage = value;
+    // Highlight selected
+    btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    // Advance after brief delay
+    setTimeout(() => goToStep(2), 300);
+  }
+
+  function selectChallenge(btn, value) {
+    wizardData.challenge = value;
+    btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => goToStep(3), 300);
+  }
+
+  function showSuccess(formId, type) {
+    document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+    const successId = formId === 'hero'
+      ? (type === 'call' ? 'heroSuccessCall' : 'heroSuccessWA')
+      : (type === 'call' ? 'bottomSuccessCall' : 'bottomSuccessWA');
+    document.getElementById(successId).classList.add('active');
+
+    // All progress dots done
+    for (let i = 1; i <= 3; i++) {
+      const dot = document.getElementById('prog' + i);
+      if (dot) dot.className = 'prog-dot done';
+    }
+  }
 
   // ─── ALL COUNTRY CODES ───
   const countryCodes = [
@@ -1206,18 +1662,23 @@
   }
   updateSpotsDisplay();
 
-  function handleSubmit(e, formId) {
-    e.preventDefault();
-
+  function handleSubmit(formId, channel) {
     const prefix = formId === 'hero' ? 'hero' : 'bottom';
-    const btn = document.getElementById(prefix + 'SubmitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Connecting you...';
 
     const firstName = document.getElementById(prefix + 'FirstName').value.trim();
     const countryCode = document.getElementById(prefix + 'CountryCode').value;
     const phone = document.getElementById(prefix + 'Phone').value.replace(/\s/g, '');
+
+    if (!firstName || !phone) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+
     const fullPhone = countryCode + phone;
+
+    // Disable buttons
+    const card = document.getElementById(prefix === 'hero' ? 'hero-form-wrapper' : 'request');
+    card.querySelectorAll('.channel-btn').forEach(btn => btn.disabled = true);
 
     // Reduce spots counter
     spotsRemaining = Math.max(0, spotsRemaining - 1);
@@ -1233,21 +1694,32 @@
         firstName: firstName,
         phone: fullPhone,
         phone_number: fullPhone,
+        channel: channel,
         agent: "First Principles Coach",
         source: "coach-landing-page",
         timestamp: new Date().toISOString()
       })
     }).catch(err => console.log('Webhook error:', err));
 
-    // Show success on the form that was submitted
+    // Hide the form
     const formEl = document.getElementById(prefix + '-form');
     if (formEl) formEl.style.display = 'none';
-    document.getElementById(prefix + 'Success').style.display = 'block';
 
-    // Also hide the fine print / form note nearby
-    const card = document.getElementById(prefix === 'hero' ? 'hero-form-wrapper' : 'request');
-    const note = card ? card.querySelector('.form-fine-print, .form-note') : null;
+    // Hide fine print
+    const note = card.querySelector('.form-fine-print, .form-note');
     if (note) note.style.display = 'none';
+
+    if (channel === 'call') {
+      // Show call success
+      document.getElementById(prefix + 'SuccessCall').style.display = 'block';
+    } else {
+      // Show WhatsApp success and open WhatsApp
+      document.getElementById(prefix + 'SuccessWA').style.display = 'block';
+      const waText = encodeURIComponent(`Hey Coach, I'm ${firstName}. I'd like to start my first session.`);
+      setTimeout(() => {
+        window.open(`https://wa.me/${WA_NUMBER}?text=${waText}`, '_blank');
+      }, 500);
+    }
   }
 </script>
 

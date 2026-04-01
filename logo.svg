@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#0a0a0a" stroke="#E07A5F" stroke-width="2"/>
+
+  <!-- Falcon in flight - solo, soaring upward -->
+  <g transform="translate(100, 88)">
+    <!-- Body -->
+    <path d="M0 -8 C2 -20 5 -32 3 -42 C1 -32 -1 -32 -3 -42 C-5 -32 -2 -20 0 -8Z"
+          fill="#E07A5F"/>
+    <!-- Left wing - swept back like Falcon 9 -->
+    <path d="M-2 -15 C-12 -18 -28 -10 -42 2 C-35 -2 -22 -6 -8 -10 C-5 -12 -3 -14 -2 -15Z"
+          fill="#E07A5F"/>
+    <!-- Right wing -->
+    <path d="M2 -15 C12 -18 28 -10 42 2 C35 -2 22 -6 8 -10 C5 -12 3 -14 2 -15Z"
+          fill="#E07A5F"/>
+    <!-- Left wing detail -->
+    <path d="M-3 -14 C-10 -15 -24 -8 -36 0 C-26 -4 -16 -8 -6 -11Z"
+          fill="#d4a574" opacity="0.5"/>
+    <!-- Right wing detail -->
+    <path d="M3 -14 C10 -15 24 -8 36 0 C26 -4 16 -8 6 -11Z"
+          fill="#d4a574" opacity="0.5"/>
+    <!-- Tail feathers -->
+    <path d="M0 -5 L-6 10 L0 6 L6 10Z" fill="#d4a574" opacity="0.7"/>
+    <!-- Exhaust trail / flame nod -->
+    <path d="M-2 8 L0 22 L2 8Z" fill="#E07A5F" opacity="0.3"/>
+    <path d="M-1 12 L0 28 L1 12Z" fill="#E07A5F" opacity="0.15"/>
+  </g>
+
+  <!-- Orbit arc - like a launch trajectory -->
+  <path d="M40 130 Q70 70 100 62 Q130 70 160 130" fill="none" stroke="#E07A5F" stroke-width="1" opacity="0.2"/>
+
+  <!-- Stars -->
+  <circle cx="45" cy="55" r="1.5" fill="#f5f5f5" opacity="0.3"/>
+  <circle cx="155" cy="50" r="1" fill="#f5f5f5" opacity="0.25"/>
+  <circle cx="60" cy="38" r="1" fill="#f5f5f5" opacity="0.2"/>
+  <circle cx="140" cy="35" r="1.5" fill="#f5f5f5" opacity="0.2"/>
+  <circle cx="100" cy="30" r="1" fill="#f5f5f5" opacity="0.15"/>
+
+  <!-- Text: FLY SOLO -->
+  <text x="100" y="168" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="5" fill="#f5f5f5">FLY SOLO</text>
+</svg>
