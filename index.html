@@ -864,9 +864,10 @@
 <!-- ─── HERO WITH FORM ─── -->
 <section class="hero">
   <div class="hero-video-bg">
-    <!-- Rotating hero videos: rockets, EVs, factories, space -->
+    <!-- Rocket launch hero video -->
     <video id="heroVideo" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80">
-      <source src="https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4" type="video/mp4">
+      <source src="https://videos.pexels.com/video-files/41648/41648-hd_1920_1080_25fps.mp4" type="video/mp4">
+      <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1280_720_30fps.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -876,20 +877,20 @@
     <div class="hero-text">
       <div class="hero-badge">
         <div class="pulse-dot"></div>
-        Invite Only
+        You've Been Invited
       </div>
-      <h1>A coach for founders who think in <em>first principles</em></h1>
-      <p class="hero-desc">Trained on 10,000+ hours of frameworks from the world's most ambitious builders. It calls you. It remembers. It holds you accountable.</p>
+      <h1>Your guide to <em>purpose and success</em></h1>
+      <p class="hero-desc">An AI coach trained on 10,000+ hours of podcasts, interviews, and frameworks from the man who builds rockets, EVs, and platforms that reach billions. It calls you. It remembers. It holds you accountable.</p>
     </div>
 
     <!-- HERO FORM -->
     <div class="hero-form-card" id="hero-form-wrapper">
       <div class="invite-tag">
         <div class="dot"></div>
-        <span><span class="spots-count">27</span> spots remaining</span>
+        <span><span class="spots-count">26</span> spots remaining</span>
       </div>
-      <h3>Get your first session</h3>
-      <p class="card-sub">Your coach calls within 60 seconds. Pick up your phone.</p>
+      <h3>You're invited</h3>
+      <p class="card-sub">Enter your details. Your coach calls within 60 seconds.</p>
 
       <form id="hero-form" onsubmit="handleSubmit(event, 'hero')">
         <label for="heroFirstName">First name</label>
@@ -974,8 +975,8 @@
 
 <!-- ─── INVITE ONLY FLOW ─── -->
 <section class="invite-flow">
-  <div class="section-label">Invite Only</div>
-  <h2>How you get access</h2>
+  <div class="section-label">You're In</div>
+  <h2>Here's what happens next</h2>
 
   <div class="flow-steps">
     <div class="flow-step active">
@@ -1003,7 +1004,7 @@
     </div>
   </div>
 
-  <div class="invite-lock">&#128274;&nbsp; <strong><span class="spots-count">26</span> spots</strong>&nbsp;remaining — invite only, no public access</div>
+  <div class="invite-lock">&#128274;&nbsp; <strong><span class="spots-count">26</span> spots</strong>&nbsp;remaining — this page is not public</div>
 </section>
 
 <!-- ─── HOW IT WORKS ─── -->
@@ -1063,8 +1064,8 @@
     <span><span class="spots-count">27</span> spots remaining</span>
   </div>
 
-  <h2>Request access</h2>
-  <p class="subtitle">Your coach will call you within 60 seconds.<br>Check your phone.</p>
+  <h2>Start your first session</h2>
+  <p class="subtitle">Your coach will call you within 60 seconds.<br>Pick up your phone.</p>
 
   <form id="bottom-form" onsubmit="handleSubmit(event, 'bottom')">
     <label for="bottomFirstName">First name</label>
@@ -1179,25 +1180,6 @@
       select.appendChild(opt);
     });
   });
-
-  // ─── HERO VIDEO ROTATION ───
-  const heroVideos = [
-    'https://videos.pexels.com/video-files/41648/41648-uhd_3840_2160_25fps.mp4',
-    'https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4',
-    'https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4',
-    'https://videos.pexels.com/video-files/857195/857195-hd_1920_1080_25fps.mp4'
-  ];
-  let currentVideo = 0;
-  const heroVideoEl = document.getElementById('heroVideo');
-  if (heroVideoEl) {
-    heroVideoEl.addEventListener('ended', () => {
-      currentVideo = (currentVideo + 1) % heroVideos.length;
-      heroVideoEl.src = heroVideos[currentVideo];
-      heroVideoEl.play();
-    });
-    // Remove loop so 'ended' fires
-    heroVideoEl.removeAttribute('loop');
-  }
 
   // ─── SPOTS COUNTER (persists in localStorage) ───
   const SPOTS_KEY = 'coach_spots_remaining';
