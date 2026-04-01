@@ -456,6 +456,108 @@
     letter-spacing: 1px;
   }
 
+  /* ─── INVITE FLOW ─── */
+  .invite-flow {
+    padding: 100px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .invite-flow .section-label { margin-bottom: 16px; }
+
+  .invite-flow h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 60px;
+  }
+
+  .flow-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 180px;
+    position: relative;
+  }
+
+  .flow-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(224,122,95,0.1);
+    border: 2px solid rgba(224,122,95,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flow-step.active .flow-icon {
+    background: rgba(224,122,95,0.2);
+    border-color: #E07A5F;
+    box-shadow: 0 0 20px rgba(224,122,95,0.2);
+  }
+
+  .flow-step h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .flow-step p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    color: rgba(224,122,95,0.35);
+    font-size: 20px;
+    min-width: 40px;
+    justify-content: center;
+  }
+
+  .invite-lock {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 48px;
+    padding: 12px 24px;
+    border: 1px solid rgba(224,122,95,0.2);
+    border-radius: 100px;
+    background: rgba(224,122,95,0.04);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .invite-lock strong {
+    color: #E07A5F;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .flow-steps { flex-direction: column; align-items: center; gap: 8px; }
+    .flow-step { max-width: 260px; }
+    .flow-arrow { transform: rotate(90deg); padding-top: 0; min-width: auto; }
+  }
+
   /* ─── HOW IT WORKS ─── */
   .how-it-works {
     padding: 120px 24px;
@@ -784,7 +886,7 @@
     <div class="hero-form-card" id="hero-form-wrapper">
       <div class="invite-tag">
         <div class="dot"></div>
-        <span>27 spots remaining</span>
+        <span><span class="spots-count">27</span> spots remaining</span>
       </div>
       <h3>Get your first session</h3>
       <p class="card-sub">Your coach calls within 60 seconds. Pick up your phone.</p>
@@ -870,6 +972,40 @@
   </div>
 </section>
 
+<!-- ─── INVITE ONLY FLOW ─── -->
+<section class="invite-flow">
+  <div class="section-label">Invite Only</div>
+  <h2>How you get access</h2>
+
+  <div class="flow-steps">
+    <div class="flow-step active">
+      <div class="flow-icon">&#128274;</div>
+      <h4>Request invite</h4>
+      <p>Enter your name &amp; phone number above</p>
+    </div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step active">
+      <div class="flow-icon">&#9742;</div>
+      <h4>Coach calls you</h4>
+      <p>Within 60 seconds, your phone rings</p>
+    </div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">
+      <div class="flow-icon">&#128172;</div>
+      <h4>First session</h4>
+      <p>15-min deep dive into your biggest challenge</p>
+    </div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">
+      <div class="flow-icon">&#128640;</div>
+      <h4>Ongoing coaching</h4>
+      <p>WhatsApp follow-ups, accountability, unlimited calls</p>
+    </div>
+  </div>
+
+  <div class="invite-lock">&#128274;&nbsp; <strong><span class="spots-count">26</span> spots</strong>&nbsp;remaining — invite only, no public access</div>
+</section>
+
 <!-- ─── HOW IT WORKS ─── -->
 <section class="how-it-works">
   <div class="section-label">How it works</div>
@@ -924,7 +1060,7 @@
 <section class="form-section" id="request">
   <div class="invite-badge-form">
     <div class="dot"></div>
-    <span>27 spots remaining</span>
+    <span><span class="spots-count">27</span> spots remaining</span>
   </div>
 
   <h2>Request access</h2>
@@ -1063,6 +1199,17 @@
     heroVideoEl.removeAttribute('loop');
   }
 
+  // ─── SPOTS COUNTER (persists in localStorage) ───
+  const SPOTS_KEY = 'coach_spots_remaining';
+  let spotsRemaining = parseInt(localStorage.getItem(SPOTS_KEY)) || 26;
+
+  function updateSpotsDisplay() {
+    document.querySelectorAll('.spots-count').forEach(el => {
+      el.textContent = spotsRemaining;
+    });
+  }
+  updateSpotsDisplay();
+
   function handleSubmit(e, formId) {
     e.preventDefault();
 
@@ -1075,6 +1222,11 @@
     const countryCode = document.getElementById(prefix + 'CountryCode').value;
     const phone = document.getElementById(prefix + 'Phone').value.replace(/\s/g, '');
     const fullPhone = countryCode + phone;
+
+    // Reduce spots counter
+    spotsRemaining = Math.max(0, spotsRemaining - 1);
+    localStorage.setItem(SPOTS_KEY, spotsRemaining);
+    updateSpotsDisplay();
 
     // Fire webhook
     fetch(WEBHOOK_URL, {
